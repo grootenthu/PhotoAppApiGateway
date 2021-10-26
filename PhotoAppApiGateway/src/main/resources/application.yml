@@ -1,0 +1,22 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka
+  instance:
+    hostname: localhost
+server:
+  port: 8082
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - filters:
+        - RemoveRequestHeader=X-USERS-COUNTRY
+        - AddRequestHeader=X-USERS-CLIENT, mobile
+        id: users-status-check
+        predicates:
+        - Path=/users/status
+        - Method=GET
+        uri: lb://users-ws
