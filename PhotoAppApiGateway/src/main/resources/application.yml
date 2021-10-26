@@ -12,11 +12,16 @@ spring:
   cloud:
     gateway:
       routes:
-      - filters:
+      - id: users-status-check
+        filters:
         - RemoveRequestHeader=X-USERS-COUNTRY
         - AddRequestHeader=X-USERS-CLIENT, mobile
-        id: users-status-check
         predicates:
         - Path=/users/status
+        - Method=GET
+        uri: lb://users-ws
+      - id: h2-console
+        predicates:
+        - Path=/h2-console
         - Method=GET
         uri: lb://users-ws
