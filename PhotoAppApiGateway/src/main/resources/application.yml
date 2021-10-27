@@ -20,6 +20,11 @@ spring:
         - Path=/users/status
         - Method=GET
         uri: lb://users-ws
+      - id: create-users
+        predicates:
+        - Path=/users
+        - Method=POST
+        uri: lb://users-ws
       - id: h2-console
         predicates:
         - Path=/h2-console
