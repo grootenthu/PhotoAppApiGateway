@@ -25,6 +25,11 @@ spring:
         - Path=/users
         - Method=POST
         uri: lb://users-ws
+      - id: users-login
+        predicates:
+        - Path=/users/login
+        - Method=POST
+        uri: lb://users-ws
       - id: h2-console
         predicates:
         - Path=/h2-console
