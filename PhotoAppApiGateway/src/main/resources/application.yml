@@ -45,10 +45,6 @@ spring:
         - Path=/h2-console
         - Method=GET
         uri: lb://users-ws
-  security:
-    user:
-      name: admin
-      password: admin
 token:
   secret: lfjo3o4jojfojoj3ojojdfojksopkpppp
   expiration: 8650400403
